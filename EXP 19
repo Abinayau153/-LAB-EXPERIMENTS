@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main()
+{
+    int counter = 0;
+
+    printf("Thread 1 enters Critical Section\n");
+    counter++;
+    printf("Counter = %d\n", counter);
+    printf("Thread 1 exits Critical Section\n\n");
+
+    printf("Thread 2 enters Critical Section\n");
+    counter++;
+    printf("Counter = %d\n", counter);
+    printf("Thread 2 exits Critical Section\n");
+
+    return 0;
+}
