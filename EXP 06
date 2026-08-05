@@ -1,0 +1,29 @@
+#include<stdio.h>
+
+int main()
+{
+    int n,i;
+
+    printf("Enter number of processes: ");
+    scanf("%d",&n);
+
+    int bt[n],pr[n];
+
+    for(i=0;i<n;i++)
+    {
+        printf("Burst Time: ");
+        scanf("%d",&bt[i]);
+
+        printf("Priority: ");
+        scanf("%d",&pr[i]);
+    }
+
+    printf("\nProcess\tBT\tPriority\n");
+
+    for(i=0;i<n;i++)
+        printf("P%d\t%d\t%d\n",i+1,bt[i],pr[i]);
+
+    printf("\nHighest priority process executes first.");
+
+    return 0;
+}
