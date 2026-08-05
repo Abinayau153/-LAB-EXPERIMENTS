@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main()
+{
+    int data = 100;
+
+    printf("Writer writes data = %d\n", data);
+
+    printf("Reader 1 reads data = %d\n", data);
+
+    printf("Reader 2 reads data = %d\n", data);
+
+    return 0;
+}
