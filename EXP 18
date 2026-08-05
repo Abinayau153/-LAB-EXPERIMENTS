@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main()
+{
+    int buffer = 0;
+
+    printf("Producer produces item 1\n");
+    buffer = 1;
+
+    printf("Consumer consumes item %d\n", buffer);
+
+    printf("Producer produces item 2\n");
+    buffer = 2;
+
+    printf("Consumer consumes item %d\n", buffer);
+
+    printf("Producer produces item 3\n");
+    buffer = 3;
+
+    printf("Consumer consumes item %d\n", buffer);
+
+    return 0;
+}
