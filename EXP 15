@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <string.h>
+
+char users[10][30];
+char files[10][20][30];
+int fileCount[10] = {0};
+
+int main()
+{
+    int userCount = 0;
+    int choice, u;
+    char username[30], filename[30];
+
+    while (1)
+    {
+        printf("\n\n--- Two Level Directory ---");
+        printf("\n1. Create User");
+        printf("\n2. Create File");
+        printf("\n3. Display Files");
+        printf("\n4. Search File");
+        printf("\n5. Exit");
+        printf("\nEnter choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+            case 1:
+                printf("Enter user name: ");
+                scanf("%s", username);
+
+                strcpy(users[userCount], username);
+                fileCount[userCount] = 0;
+                userCount++;
+
+                printf("User directory created.");
+                break;
+
+            case 2:
+                printf("Enter user name: ");
+                scanf("%s", username);
+
+                u = -1;
+
+                for (int i = 0; i < userCount; i++)
+                {
+                    if (strcmp(users[i], username) == 0)
+                    {
+                        u = i;
+                        break;
+                    }
+                }
+
+                if (u == -1)
+                {
+                    printf("User not found.");
+                    break;
+                }
+
+                printf("Enter file name: ");
+                scanf("%s", filename);
+
+                strcpy(files[u][fileCount[u]], filename);
+                fileCount[u]++;
+
+                printf("File created successfully.");
+                break;
+
+            case 3:
+                for (int i = 0; i < userCount; i++)
+                {
+                    printf("\nUser: %s\n", users[i]);
+
+                    for (int j = 0; j < fileCount[i]; j++)
+                        printf("  %s\n", files[i][j]);
+                }
+                break;
+
+            case 4:
+                printf("Enter user name: ");
+                scanf("%s", username);
+
+                u = -1;
+
+                for (int i = 0; i < userCount; i++)
+                {
+                    if (strcmp(users[i], username) == 0)
+                    {
+                        u = i;
+                        break;
+                    }
+                }
+
+                if (u == -1)
+                {
+                    printf("User not found.");
+                    break;
+                }
+
+                printf("Enter file name: ");
+                scanf("%s", filename);
+
+                for (int j = 0; j < fileCount[u]; j++)
+                {
+                    if (strcmp(files[u][j], filename) == 0)
+                    {
+                        printf("File found.");
+                        return 0;
+                    }
+                }
+
+                printf("File not found.");
+                break;
+
+            case 5:
+                return 0;
+
+            default:
+                printf("Invalid choice.");
+        }
+    }
+}
