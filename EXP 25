@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <dirent.h>
+
+int main()
+{
+    int fd;
+    struct stat fileStat;
+    DIR *dir;
+    struct dirent *entry;
+
+    fd = open("sample.txt", O_CREAT | O_RDWR, 0644);
+
+    if (fd < 0)
+    {
+        printf("File opening failed.\n");
+        return 1;
+    }
+
+    printf("File opened successfully.\n");
+
+    printf("\nUsing fcntl():\n");
+    printf("File flags = %d\n", fcntl(fd, F_GETFL));
+
+    printf("\nUsing lseek():\n");
+    printf("Current position = %ld\n", lseek(fd, 0, SEEK_CUR));
+
+    printf("\nUsing stat():\n");
+
+    if (stat("sample.txt", &fileStat) == 0)
+    {
+        printf("File size = %ld bytes\n", fileStat.st_size);
+    }
+
+    printf("\nUsing opendir() and readdir():\n");
+
+    dir = opendir(".");
+
+    if (dir != NULL)
+    {
+        while ((entry = readdir(dir)) != NULL)
+        {
+            printf("%s\n", entry->d_name);
+        }
+
+        closedir(dir);
+    }
+
+    close(fd);
+
+    return 0;
+}
