@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+    int fd;
+    char data[] = "Hello UNIX File System";
+    char buffer[100];
+
+    fd = open("sample.txt", O_CREAT | O_RDWR, 0644);
+
+    if (fd < 0)
+    {
+        printf("File opening failed.\n");
+        return 1;
+    }
+
+    printf("File opened successfully.\n");
+
+    write(fd, data, sizeof(data));
+
+    lseek(fd, 0, SEEK_SET);
+
+    read(fd, buffer, sizeof(data));
+
+    printf("File content: %s\n", buffer);
+
+    close(fd);
+
+    printf("File closed successfully.\n");
+
+    return 0;
+}
