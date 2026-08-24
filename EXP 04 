@@ -1,0 +1,58 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPEHEyzQfJtbRhl/rusbAZB",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Abinayau153/-LAB-EXPERIMENTS/blob/main/EXP%2004%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "5uCJCPD2zweW",
+        "outputId": "8254daea-fffd-4f2e-c9b5-62eb222f420e"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "apple banana mango orange\n"
+          ]
+        }
+      ],
+      "source": [
+        "s = \"banana apple orange mango\"\n",
+        "\n",
+        "words = s.split()\n",
+        "words.sort()\n",
+        "\n",
+        "print(\" \".join(words))"
+      ]
+    }
+  ]
+}
