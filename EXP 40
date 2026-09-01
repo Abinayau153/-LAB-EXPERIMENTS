@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
+int main()
+{
+    struct stat file;
+    char filename[] = "sample.txt";
+
+    /* Create file */
+    FILE *fp = fopen(filename, "w");
+
+    if(fp == NULL)
+    {
+        printf("Unable to create file.\n");
+        return 1;
+    }
+
+    fprintf(fp, "Linux File Permissions\n");
+    fclose(fp);
+
+    /* Set permissions:
+       Owner  : Read + Write
+       Group  : Read
+       Others : Read
+    */
+    chmod(filename, 0644);
+
+    if(stat(filename, &file) == 0)
+    {
+        printf("File: %s\n", filename);
+
+        printf("\nFile Permissions:\n");
+
+        printf("Owner  : ");
+        printf("%c", (file.st_mode & S_IRUSR) ? 'r' : '-');
+        printf("%c", (file.st_mode & S_IWUSR) ? 'w' : '-');
+        printf("%c", (file.st_mode & S_IXUSR) ? 'x' : '-');
+
+        printf("\nGroup  : ");
+        printf("%c", (file.st_mode & S_IRGRP) ? 'r' : '-');
+        printf("%c", (file.st_mode & S_IWGRP) ? 'w' : '-');
+        printf("%c", (file.st_mode & S_IXGRP) ? 'x' : '-');
+
+        printf("\nOthers : ");
+        printf("%c", (file.st_mode & S_IROTH) ? 'r' : '-');
+        printf("%c", (file.st_mode & S_IWOTH) ? 'w' : '-');
+        printf("%c", (file.st_mode & S_IXOTH) ? 'x' : '-');
+
+        printf("\n");
+    }
+
+    printf("\nUser Types in Linux:\n");
+    printf("1. Owner/User (u)\n");
+    printf("2. Group (g)\n");
+    printf("3. Others (o)\n");
+
+    printf("\nPermission Types:\n");
+    printf("r = Read\n");
+    printf("w = Write\n");
+    printf("x = Execute\n");
+
+    return 0;
+}
